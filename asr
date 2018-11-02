@@ -1,0 +1,20 @@
+#!/usr/bin/env  bash
+
+if [ -z $1 ]; then
+    echo "usage: asr <assembler src file,no extension, '.s|.asm' assumed>"
+    exit
+fi
+
+ext=""
+if [ -e "$1.asm" ]; then 
+   ext="asm"
+elif [ -e "$1.s" ]; then 
+   ext="s"
+else
+    echo "error: no such src file"
+    exit
+fi
+
+yasm -Worphan-labels -g dwarf2 -f elf64 -l $1.lst $1.$ext
+ld -g -o ./$1 ./$1.o
+
