@@ -1,6 +1,5 @@
 ; non-uniform idiocy of the fucking intel
-;     instruction set. intel designers must be
-;     castrated, to leave no progeny !
+;     instruction set.
 
 section .data
 
