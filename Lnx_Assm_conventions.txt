@@ -1,0 +1,14 @@
+call params register  of the function:  %edi
+return value register of the function:  %eax
+
+asm() ... constraints are in following order:  OUTPUT [or INOUT] : INPUT : ADDITIONAL (author came from Intel,not ATT/BellLAbs ?)
+asm() ... constraints:
+	: "=r" (...)  		output 
+	: "r"  (...)  		input
+	: "+r" (...)		inout
+	: "=&r" (...)		output, dont allow in and out register to overlap[ use 2 separate registers and copy if needed]
+	: "m" (...)		direct mem address
+	: "[+|=]<register letter>" (...)	specific register [ say, "+a" AL/AX/EAX/RAX - dependin on size] 
+	
+	: "memory"		clobbers memory - dont rearrange [mark asm() call volatile as well]
+	: "cc"			generates conditional flag - dont rearrange
